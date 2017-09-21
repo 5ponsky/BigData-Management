@@ -33,10 +33,11 @@ if (not api):
     print ("Can't Authenticate")
     sys.exit(-1)
 # mongodb://heroku_n2tfcpfx:d09ttqk88oe9r5ag0v2okkj0bs@dbh30.mlab.com:27307/heroku_n2tfcpfx
-client = MongoClient('mongodb://heroku_n2tfcpfx:d09ttqk88oe9r5ag0v2okkj0bs@dbh30.mlab.com:27307/heroku_n2tfcpfx', 27307)
+
+client = MongoClient('bdam-tweets.herokuapp.com', 27307)
 #client = open(os.path.dirname(os.path.realpath("test.txt")), "r")
 #print(client.read())
-db = client['twitter_db']
+db = client['mongo-lab']
 
 start_time = time.time()
 last_sun = str(datetime.date.today() -
