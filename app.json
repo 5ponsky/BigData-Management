@@ -1,0 +1,16 @@
+{
+  "name": "Big Data Analytics and Management -- tweets data",
+  "description": "A web crawler to scrap twitter",
+  "image": "heroku/python",
+  "repository": "https://github.com/heroku/BigData-Management",
+  "keywords": ["python",],
+  "addons": [ "heroku-mongolab" ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "python crawler.py",
+        "test": "python crawler.py"
+      }
+    }
+  }
+}
