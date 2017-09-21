@@ -32,8 +32,8 @@ api = tweepy.API(auth, wait_on_rate_limit=True,
 if (not api):
     print ("Can't Authenticate")
     sys.exit(-1)
-
-client = MongoClient('mongodb://lgdillin:Big.Data-1@ds147034.mlab.com:47034/tweets', 47034)
+# mongodb://heroku_n2tfcpfx:d09ttqk88oe9r5ag0v2okkj0bs@dbh30.mlab.com:27307/heroku_n2tfcpfx
+client = MongoClient('mongodb://heroku_n2tfcpfx:d09ttqk88oe9r5ag0v2okkj0bs@dbh30.mlab.com:27307/heroku_n2tfcpfx', 27307)
 #client = open(os.path.dirname(os.path.realpath("test.txt")), "r")
 #print(client.read())
 db = client['twitter_db']
@@ -65,6 +65,7 @@ def crawler(searchQuery, maxTweets=100000, tweetsPerQry=100):
                     break
 
                 for tweet in new_tweets:
+                    print(tweet)
                     collection.insert(json.loads(json.dumps(tweet._json)))
 
                 tweetCount += len(new_tweets)
