@@ -9,20 +9,33 @@ from tweepy import OAuthHandler
 #   Tweepy can be installed wit pip: pip install tweepy
 #############
 
-consumer_key = 'XXXX'
-consumer_secret = 'XXXX'
-access_token = 'XXXX'
-access_token_secret = 'XXXX'
+#Just for now
+import os
 
+# I really hate that our keys are public when hosted on github :( not secure
+consumer_key = 'vpvdYQoEvBKYoqXz4SWX8l9PZ'
+consumer_secret = 'LKi0n0ZlyU4fTElfp8CBOOw89YFhEyl7P9tRB2DrILTVWsKDo5'
+access_token = '910189018905825285-W0P6aue3kstAqK3RoEFJAGIWYvtpIOZ'
+access_token_secret = 'Fljltt5C7deqlr91kkzA6WwO14KZlyqFgG0AHoum6Oy0L'
+
+#
 auth = OAuthHandler(consumer_key, consumer_secret)
+
+#
 auth.set_access_token(access_token, access_token_secret)
+
+#
 api = tweepy.API(auth, wait_on_rate_limit=True,
                  wait_on_rate_limit_notify=True)
+
+# If API fails
 if (not api):
     print ("Can't Authenticate")
     sys.exit(-1)
 
-client = MongoClient('localhost', 27017)
+client = MongoClient('mongodb://lgdillin:Big.Data-1@ds147034.mlab.com:47034/tweets', 47034)
+#client = open(os.path.dirname(os.path.realpath("test.txt")), "r")
+#print(client.read())
 db = client['twitter_db']
 
 start_time = time.time()
@@ -35,7 +48,7 @@ searchQuery = ['#news', '#sport', '#BREAKING']
 
 def crawler(searchQuery, maxTweets=100000, tweetsPerQry=100):
     for word in searchQuery:
-        max_id = -1L
+        max_id = -1# LS
         tweetCount = 0
         collection = db['twitter_{0}'.format(word[1:])]
         while tweetCount < maxTweets:
