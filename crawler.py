@@ -65,6 +65,7 @@ def crawler(searchQuery, maxTweets=100000, tweetsPerQry=100):
                     break
 
                 for tweet in new_tweets:
+                    print(tweet)
                     collection.insert(json.loads(json.dumps(tweet._json)))
 
                 tweetCount += len(new_tweets)
